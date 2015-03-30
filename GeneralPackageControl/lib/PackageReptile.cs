@@ -11,15 +11,18 @@ namespace GeneralPackageControl.lib
     public class PackageReptile
     {
         private string a_pattern = @"\<a[^\>]+href=""([^""]+)""[^\>]+\>([\s\S]+?)\<\/a\>";
+        private string title_pattern = @"\<title\>([^\<]+)\<\/title\>";
         private string[] keyword = new string[] { "down", "下载", "download" };
 
         private HttpHelper _httpHelper;
         private Regex a_Regex;
+        private Regex title_Regex;
 
         public PackageReptile()
         {
             this._httpHelper = new HttpHelper();
             this.a_Regex = new Regex(a_pattern, RegexOptions.IgnoreCase);
+            this.title_Regex = new Regex(title_pattern, RegexOptions.IgnoreCase);
         }
 
         private string getHtml(string url)
@@ -49,6 +52,13 @@ namespace GeneralPackageControl.lib
                 }
             }
             return temp.ToString();
+        }
+
+        private string getHtmlTitle(string html)
+        {
+            var match = title_Regex.Match(html);
+
+            return match.Groups[1].Value;
         }
 
         private string getTitle(string html)
@@ -86,7 +96,7 @@ namespace GeneralPackageControl.lib
                 if (isUnusedHref(href)) continue;
 
                 var text = item.Groups[2].Value;
-                var title = getTitle(item.Value);
+                var title = getHtmlTitle(html);
                 if (!isInKeyword(text) &&
                     !isInKeyword(title) &&
                     !isInKeyword(href)) continue;
@@ -94,7 +104,7 @@ namespace GeneralPackageControl.lib
                 var package = new PackageItem()
                 {
                     PackageName = string.IsNullOrEmpty(title) ? text : title,
-                    DownloadUrl = href,
+                    DownloadUrl = href.StartsWith(@"/") ? url + href.Substring(1, href.Length - 1) : href,
                     LastUpdateTime = DateTime.Now,
                     Website = url
                 };

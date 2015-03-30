@@ -38,8 +38,6 @@
             // 
             this.ListBox.CheckOnClick = true;
             this.ListBox.FormattingEnabled = true;
-            this.ListBox.Items.AddRange(new object[] {
-            "test1"});
             this.ListBox.Location = new System.Drawing.Point(12, 44);
             this.ListBox.Name = "ListBox";
             this.ListBox.Size = new System.Drawing.Size(470, 340);

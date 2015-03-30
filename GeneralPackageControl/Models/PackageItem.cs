@@ -15,5 +15,6 @@ namespace GeneralPackageControl.Models
         public string Website { get; set; }
         public string DownloadUrl { get; set; }
         public DateTime LastUpdateTime { get; set; }
+        public string LocalPath { get; set; }
     }
 }

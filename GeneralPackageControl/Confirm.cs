@@ -60,9 +60,29 @@ namespace GeneralPackageControl
             this.DialogResult = DialogResult.Cancel;
         }
 
+        private void enableBtConfirm()
+        {
+            btConfirm.Enabled = !string.IsNullOrWhiteSpace(textBoxPath.Text);
+        }
+
         private void radio_CheckedChanged(object sender, EventArgs e)
         {
             _result = ((RadioButton)sender).Tag as PackageItem;
+            enableBtConfirm();
+        }
+
+        private void textBoxPath_TextChanged(object sender, EventArgs e)
+        {
+            _result.LocalPath = textBoxPath.Text;
+            enableBtConfirm();
+        }
+
+        private void btChooseFolder_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxPath.Text = folderBrowserDialog.SelectedPath;
+            }
         }
     }
 }
