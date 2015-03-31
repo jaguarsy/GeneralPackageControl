@@ -16,15 +16,16 @@ namespace GeneralPackageControl
         private List<PackageItem> _list;
         private static PackageItem _result = null;
 
-        public Confirm(List<PackageItem> list)
+        public Confirm(List<PackageItem> list, string path)
         {
             InitializeComponent();
             this._list = list;
+            this.textBoxPath.Text = path;
         }
 
-        public static PackageItem ShowDialog(List<PackageItem> list)
+        public static PackageItem ShowDialog(List<PackageItem> list, string defaultPath)
         {
-            Confirm confirm = new Confirm(list);
+            Confirm confirm = new Confirm(list, defaultPath);
             if (confirm.ShowDialog() == DialogResult.Cancel) return null;
             return _result;
         }

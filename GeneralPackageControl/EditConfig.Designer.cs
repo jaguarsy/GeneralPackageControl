@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btOK = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbPackageName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbUrl = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbWebsite = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tbPath = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbWebsite = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbUrl = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbPackageName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -58,63 +58,12 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // btOK
+            // tbPath
             // 
-            this.btOK.Location = new System.Drawing.Point(221, 148);
-            this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(75, 23);
-            this.btOK.TabIndex = 1;
-            this.btOK.Text = "保存";
-            this.btOK.UseVisualStyleBackColor = true;
-            this.btOK.Click += new System.EventHandler(this.btOK_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "库名：";
-            // 
-            // tbPackageName
-            // 
-            this.tbPackageName.Location = new System.Drawing.Point(53, 14);
-            this.tbPackageName.Name = "tbPackageName";
-            this.tbPackageName.Size = new System.Drawing.Size(225, 21);
-            this.tbPackageName.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 44);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "链接：";
-            // 
-            // tbUrl
-            // 
-            this.tbUrl.Location = new System.Drawing.Point(53, 41);
-            this.tbUrl.Name = "tbUrl";
-            this.tbUrl.Size = new System.Drawing.Size(225, 21);
-            this.tbUrl.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "主页：";
-            // 
-            // tbWebsite
-            // 
-            this.tbWebsite.Location = new System.Drawing.Point(53, 68);
-            this.tbWebsite.Name = "tbWebsite";
-            this.tbWebsite.Size = new System.Drawing.Size(225, 21);
-            this.tbWebsite.TabIndex = 5;
+            this.tbPath.Location = new System.Drawing.Point(53, 95);
+            this.tbPath.Name = "tbPath";
+            this.tbPath.Size = new System.Drawing.Size(225, 21);
+            this.tbPath.TabIndex = 7;
             // 
             // label4
             // 
@@ -125,16 +74,67 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "位置：";
             // 
-            // tbPath
+            // tbWebsite
             // 
-            this.tbPath.Location = new System.Drawing.Point(53, 95);
-            this.tbPath.Name = "tbPath";
-            this.tbPath.Size = new System.Drawing.Size(225, 21);
-            this.tbPath.TabIndex = 7;
+            this.tbWebsite.Location = new System.Drawing.Point(53, 68);
+            this.tbWebsite.Name = "tbWebsite";
+            this.tbWebsite.Size = new System.Drawing.Size(225, 21);
+            this.tbWebsite.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "主页：";
+            // 
+            // tbUrl
+            // 
+            this.tbUrl.Location = new System.Drawing.Point(53, 41);
+            this.tbUrl.Name = "tbUrl";
+            this.tbUrl.Size = new System.Drawing.Size(225, 21);
+            this.tbUrl.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "链接：";
+            // 
+            // tbPackageName
+            // 
+            this.tbPackageName.Location = new System.Drawing.Point(53, 14);
+            this.tbPackageName.Name = "tbPackageName";
+            this.tbPackageName.Size = new System.Drawing.Size(225, 21);
+            this.tbPackageName.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "库名：";
+            // 
+            // btOK
+            // 
+            this.btOK.Location = new System.Drawing.Point(140, 148);
+            this.btOK.Name = "btOK";
+            this.btOK.Size = new System.Drawing.Size(75, 23);
+            this.btOK.TabIndex = 1;
+            this.btOK.Text = "保存";
+            this.btOK.UseVisualStyleBackColor = true;
+            this.btOK.Click += new System.EventHandler(this.btOK_Click);
             // 
             // btCancel
             // 
-            this.btCancel.Location = new System.Drawing.Point(140, 148);
+            this.btCancel.Location = new System.Drawing.Point(221, 148);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 2;

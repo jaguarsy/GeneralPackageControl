@@ -50,9 +50,9 @@
             // btConfirm
             // 
             this.btConfirm.Enabled = false;
-            this.btConfirm.Location = new System.Drawing.Point(255, 247);
+            this.btConfirm.Location = new System.Drawing.Point(176, 247);
             this.btConfirm.Name = "btConfirm";
-            this.btConfirm.Size = new System.Drawing.Size(73, 32);
+            this.btConfirm.Size = new System.Drawing.Size(73, 23);
             this.btConfirm.TabIndex = 2;
             this.btConfirm.Text = "确认";
             this.btConfirm.UseVisualStyleBackColor = true;
@@ -69,9 +69,9 @@
             // 
             // btCancel
             // 
-            this.btCancel.Location = new System.Drawing.Point(176, 247);
+            this.btCancel.Location = new System.Drawing.Point(255, 247);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(73, 32);
+            this.btCancel.Size = new System.Drawing.Size(73, 23);
             this.btCancel.TabIndex = 4;
             this.btCancel.Text = "取消";
             this.btCancel.UseVisualStyleBackColor = true;
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 282);
+            this.ClientSize = new System.Drawing.Size(330, 276);
             this.Controls.Add(this.btChooseFolder);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxPath);

@@ -41,6 +41,9 @@
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.btChooseAll = new System.Windows.Forms.Button();
+            this.btSync = new System.Windows.Forms.Button();
+            this.btDefaultPath = new System.Windows.Forms.Button();
+            this.btSetDefault = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +56,7 @@
             this.ListBox.Name = "ListBox";
             this.ListBox.Size = new System.Drawing.Size(470, 356);
             this.ListBox.TabIndex = 1;
+            this.ListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
             // 
             // contextMenuStrip
             // 
@@ -61,7 +65,7 @@
             this.ToolStripMenuItemUpdate,
             this.ToolStripMenuItemDelete});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(101, 70);
             // 
             // ToolStripMenuItemEdit
             // 
@@ -73,7 +77,7 @@
             // ToolStripMenuItemUpdate
             // 
             this.ToolStripMenuItemUpdate.Name = "ToolStripMenuItemUpdate";
-            this.ToolStripMenuItemUpdate.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemUpdate.Size = new System.Drawing.Size(100, 22);
             this.ToolStripMenuItemUpdate.Text = "更新";
             this.ToolStripMenuItemUpdate.Click += new System.EventHandler(this.ToolStripMenuItemUpdate_Click);
             // 
@@ -104,6 +108,7 @@
             // 
             // btUpdate
             // 
+            this.btUpdate.Enabled = false;
             this.btUpdate.Location = new System.Drawing.Point(116, 39);
             this.btUpdate.Name = "btUpdate";
             this.btUpdate.Size = new System.Drawing.Size(89, 23);
@@ -144,11 +149,44 @@
             this.btChooseAll.UseVisualStyleBackColor = true;
             this.btChooseAll.Click += new System.EventHandler(this.btChooseAll_Click);
             // 
+            // btSync
+            // 
+            this.btSync.Location = new System.Drawing.Point(211, 39);
+            this.btSync.Name = "btSync";
+            this.btSync.Size = new System.Drawing.Size(54, 23);
+            this.btSync.TabIndex = 7;
+            this.btSync.Text = "同步";
+            this.btSync.UseVisualStyleBackColor = true;
+            this.btSync.Click += new System.EventHandler(this.btSync_Click);
+            // 
+            // btDefaultPath
+            // 
+            this.btDefaultPath.Location = new System.Drawing.Point(271, 39);
+            this.btDefaultPath.Name = "btDefaultPath";
+            this.btDefaultPath.Size = new System.Drawing.Size(111, 23);
+            this.btDefaultPath.TabIndex = 8;
+            this.btDefaultPath.Text = "打开默认文件夹";
+            this.btDefaultPath.UseVisualStyleBackColor = true;
+            this.btDefaultPath.Click += new System.EventHandler(this.btDefaultPath_Click);
+            // 
+            // btSetDefault
+            // 
+            this.btSetDefault.Location = new System.Drawing.Point(388, 39);
+            this.btSetDefault.Name = "btSetDefault";
+            this.btSetDefault.Size = new System.Drawing.Size(94, 23);
+            this.btSetDefault.TabIndex = 9;
+            this.btSetDefault.Text = "设置默认路径";
+            this.btSetDefault.UseVisualStyleBackColor = true;
+            this.btSetDefault.Click += new System.EventHandler(this.btSetDefault_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 457);
+            this.Controls.Add(this.btSetDefault);
+            this.Controls.Add(this.btDefaultPath);
+            this.Controls.Add(this.btSync);
             this.Controls.Add(this.btChooseAll);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.btUpdate);
@@ -182,6 +220,9 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUpdate;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDelete;
         private System.Windows.Forms.Button btChooseAll;
+        private System.Windows.Forms.Button btSync;
+        private System.Windows.Forms.Button btDefaultPath;
+        private System.Windows.Forms.Button btSetDefault;
 
     }
 }

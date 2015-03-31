@@ -49,11 +49,11 @@ namespace GeneralPackageControl.lib
             }
         }
 
-        public PackageItem ReptilePackage(string url)
+        public PackageItem ReptilePackage(string url, string path)
         {
             var list = _reptile.Reptile(url);
 
-            var result = Confirm.ShowDialog(list);
+            var result = Confirm.ShowDialog(list, path);
             return result;
         }
 

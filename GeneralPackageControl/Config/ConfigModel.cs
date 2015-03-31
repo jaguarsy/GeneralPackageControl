@@ -9,6 +9,7 @@ namespace GeneralPackageControl.Config
 {
     public class ConfigModel
     {
+        public string DefaultPath { get; set; }
         public List<PackageItem> packages { get; set; }
     }
 }

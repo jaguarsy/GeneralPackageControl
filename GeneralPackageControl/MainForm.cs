@@ -52,19 +52,27 @@ namespace GeneralPackageControl
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void pull()
         {
-            init();
+            btSync.Enabled = false;
 
             StatusLabel.Text = Resources.Synchronizing;
-            _packageManager.Pull((p) =>
+            _packageManager.Pull((packs) =>
             {
-                _config.packages = p;
+                var result = packs.Where(p => _config.packages.Where(t => t.PackageName.Equals(p.PackageName)).Count() == 0);
+                _config.packages.AddRange(result);
                 _configManager.SetConfig(_config);
 
                 init();
                 StatusLabel.Text = Resources.Synchronized;
+                btSync.Enabled = true;
             });
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            init();
+            pull();
         }
 
         private void tbUrl_TextChanged(object sender, EventArgs e)
@@ -74,7 +82,7 @@ namespace GeneralPackageControl
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-            var result = _packageManager.ReptilePackage(tbUrl.Text.Trim());
+            var result = _packageManager.ReptilePackage(tbUrl.Text.Trim(), _config.DefaultPath);
             if (result == null) return;
 
             _config.packages.Add(result);
@@ -86,6 +94,7 @@ namespace GeneralPackageControl
         private void btChooseAll_Click(object sender, EventArgs e)
         {
             setSelected();
+            btUpdate.Enabled = ListBox.CheckedItems.Count > 0;
         }
 
         private void setSelected()
@@ -129,6 +138,31 @@ namespace GeneralPackageControl
             btUpdate.Enabled = false;
             StatusLabel.Text = Resources.Updating;
             _packageManager.UpdatePackage(target);
+        }
+
+        private void btSync_Click(object sender, EventArgs e)
+        {
+            pull();
+            _packageManager.Push(_config.packages);
+        }
+
+        private void btSetDefault_Click(object sender, EventArgs e)
+        {
+            var result = SetDefault.ShowDialog(_config.DefaultPath);
+            if (string.IsNullOrEmpty(result)) return;
+
+            _config.DefaultPath = result;
+            _configManager.SetConfig(_config);
+        }
+
+        private void btDefaultPath_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", _config.DefaultPath);
+        }
+
+        private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btUpdate.Enabled = ListBox.CheckedItems.Count > 0;
         }
     }
 }
