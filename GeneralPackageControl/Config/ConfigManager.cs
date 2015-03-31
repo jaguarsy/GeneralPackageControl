@@ -49,7 +49,7 @@ namespace GeneralPackageControl
             JavaScriptSerializer js = new JavaScriptSerializer();
 
             var result = js.Serialize(config);
-            sw.WriteAsync(result);
+            sw.Write(result);
             sw.Close();
         }
     }

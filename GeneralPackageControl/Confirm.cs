@@ -69,12 +69,14 @@ namespace GeneralPackageControl
         private void radio_CheckedChanged(object sender, EventArgs e)
         {
             _result = ((RadioButton)sender).Tag as PackageItem;
+            _result.LocalPath = textBoxPath.Text;
             enableBtConfirm();
         }
 
         private void textBoxPath_TextChanged(object sender, EventArgs e)
         {
-            _result.LocalPath = textBoxPath.Text;
+            if (_result != null)
+                _result.LocalPath = textBoxPath.Text;
             enableBtConfirm();
         }
 

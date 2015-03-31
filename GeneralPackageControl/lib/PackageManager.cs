@@ -16,7 +16,6 @@ namespace GeneralPackageControl.lib
     public class PackageManager
     {
         private readonly string PATH = "packages";
-        private string[] extends = new string[] { ".js", ".zip", ".rar", ".css" };
 
         private Firebase _firebase;
         private PackageReptile _reptile;
@@ -53,8 +52,15 @@ namespace GeneralPackageControl.lib
         {
             var list = _reptile.Reptile(url);
 
-            var result = Confirm.ShowDialog(list, path);
-            return result;
+            if (list.Count > 1)
+            {
+                Console.WriteLine(url, path);
+                var result = Confirm.ShowDialog(list, path);
+                return result;
+            }
+            else if (list.Count == 1)
+                return list[0];
+            return null;
         }
 
         public void Pull(Action<List<PackageItem>> callback)
@@ -122,7 +128,6 @@ namespace GeneralPackageControl.lib
             {
                 Console.WriteLine(item.PackageName);
                 var result = _reptile.DownloadPackage(item);
-                Console.WriteLine(result.Header);
                 var packagePath = Path.Combine(item.LocalPath, item.PackageName);
                 if (!Directory.Exists(packagePath))
                 {
@@ -130,6 +135,11 @@ namespace GeneralPackageControl.lib
                 }
 
                 var filename = getName(result.Header, item.DownloadUrl).ToLower();
+                if (string.IsNullOrEmpty(filename))
+                {
+                    filename = item.PackageName + ".zip";
+                }
+
                 File.WriteAllBytes(Path.Combine(packagePath, filename), result.ResultByte);
 
                 DeCompressFile(packagePath, filename);
@@ -149,7 +159,8 @@ namespace GeneralPackageControl.lib
 
             var tmp = url.Split('/');
             fileName = tmp[tmp.Length - 1];
-            if (!string.IsNullOrEmpty(fileName)) return fileName;
+            if (!string.IsNullOrEmpty(fileName)
+                && fileName.Count(p => p.Equals(".")) == 1) return fileName;
 
             return string.Empty;
         }

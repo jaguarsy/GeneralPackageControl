@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -69,10 +70,35 @@ namespace GeneralPackageControl
             });
         }
 
+        private void push()
+        {
+            _packageManager.Push(_config.packages);
+        }
+
+        private void saveConfig()
+        {
+            _configManager.SetConfig(_config);
+        }
+
+        private void updateVersion()
+        {
+            for (int i = 0, len = _config.packages.Count; i < len; i++)
+            {
+                var item = _config.packages[i];
+                var newPackage = _packageManager.ReptilePackage(item.Website, item.LocalPath);
+                if (newPackage == null) continue;
+                item.DownloadUrl = newPackage.DownloadUrl;
+                item.LastUpdateTime = newPackage.LastUpdateTime;
+            }
+            saveConfig();
+            push();
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             init();
             pull();
+            //new Thread(new ThreadStart(updateVersion)).Start();
         }
 
         private void tbUrl_TextChanged(object sender, EventArgs e)
@@ -86,8 +112,8 @@ namespace GeneralPackageControl
             if (result == null) return;
 
             _config.packages.Add(result);
-            _configManager.SetConfig(_config);
-            _packageManager.Push(_config.packages);
+            saveConfig();
+            push();
             init();
         }
 
@@ -124,9 +150,8 @@ namespace GeneralPackageControl
 
             if (EditConfig.ShowDialog(package) == null) return;
 
-            _configManager.SetConfig(_config);
-            _packageManager.Push(_config.packages);
-
+            saveConfig();
+            push();
             init();
         }
 
@@ -143,7 +168,7 @@ namespace GeneralPackageControl
         private void btSync_Click(object sender, EventArgs e)
         {
             pull();
-            _packageManager.Push(_config.packages);
+            push();
         }
 
         private void btSetDefault_Click(object sender, EventArgs e)

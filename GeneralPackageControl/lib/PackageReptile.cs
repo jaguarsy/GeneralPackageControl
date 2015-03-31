@@ -14,6 +14,7 @@ namespace GeneralPackageControl.lib
         private string a_pattern = @"\<a[^\>]+href=""([^""]+)""[^\>]+\>([\s\S]+?)\<\/a\>";
         private string title_pattern = @"\<title\>([^\<]+)\<\/title\>";
         private string[] keyword = new string[] { "down", "下载", "download" };
+        private string[] extends = new string[] { ".js", ".zip", ".rar", ".css" };
 
         private HttpHelper _httpHelper;
         private Regex a_Regex;
@@ -85,6 +86,15 @@ namespace GeneralPackageControl.lib
                    href.StartsWith("#");
         }
 
+        private bool isInExtends(string href)
+        {
+            foreach (var item in extends)
+            {
+                if (href.Contains(item)) return true;
+            }
+            return false;
+        }
+
         public List<PackageItem> Reptile(string url)
         {
             var html = getHtml(url);
@@ -100,7 +110,8 @@ namespace GeneralPackageControl.lib
                 var text = item.Groups[2].Value;
                 if (!isInKeyword(text) &&
                     !isInKeyword(aTitle) &&
-                    !isInKeyword(href)) continue;
+                    !isInKeyword(href) &&
+                    !isInExtends(href)) continue;
                 var title = getHtmlTitle(html);
 
                 var package = new PackageItem()
