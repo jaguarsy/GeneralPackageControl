@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GeneralPackageControl.exe" size="48656">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GeneralPackageControl.exe" size="49168">
       <assemblyIdentity name="GeneralPackageControl" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OcUA36rbKLts9GM6XtHi42jwQNhYfIwaE/drz5/d16s=</dsig:DigestValue>
+        <dsig:DigestValue>X4kD5nyqQB8CGxvL8P4f7+U6DijC76C07r/olhdhCZY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

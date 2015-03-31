@@ -56,6 +56,7 @@ namespace GeneralPackageControl
         private void pull()
         {
             btSync.Enabled = false;
+            btUpdateVersion.Enabled = false;
 
             StatusLabel.Text = Resources.Synchronizing;
             _packageManager.Pull((packs) =>
@@ -67,6 +68,7 @@ namespace GeneralPackageControl
                 init();
                 StatusLabel.Text = Resources.Synchronized;
                 btSync.Enabled = true;
+                btUpdateVersion.Enabled = true;
             });
         }
 
@@ -92,13 +94,17 @@ namespace GeneralPackageControl
             }
             saveConfig();
             push();
+
+            Invoke(new Action(() =>
+            {
+                StatusLabel.Text = Resources.Done;
+            }));
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             init();
             pull();
-            //new Thread(new ThreadStart(updateVersion)).Start();
         }
 
         private void tbUrl_TextChanged(object sender, EventArgs e)
@@ -188,6 +194,12 @@ namespace GeneralPackageControl
         private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             btUpdate.Enabled = ListBox.CheckedItems.Count > 0;
+        }
+
+        private void btUpdateVersion_Click(object sender, EventArgs e)
+        {
+            StatusLabel.Text = Resources.UpdatingVersion;
+            new Thread(new ThreadStart(updateVersion)).Start();
         }
     }
 }

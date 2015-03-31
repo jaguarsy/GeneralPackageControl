@@ -122,5 +122,14 @@ namespace GeneralPackageControl.Properties {
                 return ResourceManager.GetString("Updating", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 正在更新所有包的版本... 的本地化字符串。
+        /// </summary>
+        internal static string UpdatingVersion {
+            get {
+                return ResourceManager.GetString("UpdatingVersion", resourceCulture);
+            }
+        }
     }
 }

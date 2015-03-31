@@ -44,6 +44,7 @@
             this.btSync = new System.Windows.Forms.Button();
             this.btDefaultPath = new System.Windows.Forms.Button();
             this.btSetDefault = new System.Windows.Forms.Button();
+            this.btUpdateVersion = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -91,14 +92,14 @@
             // 
             this.tbUrl.Location = new System.Drawing.Point(12, 12);
             this.tbUrl.Name = "tbUrl";
-            this.tbUrl.Size = new System.Drawing.Size(410, 21);
+            this.tbUrl.Size = new System.Drawing.Size(322, 21);
             this.tbUrl.TabIndex = 2;
             this.tbUrl.TextChanged += new System.EventHandler(this.tbUrl_TextChanged);
             // 
             // btAdd
             // 
             this.btAdd.Enabled = false;
-            this.btAdd.Location = new System.Drawing.Point(428, 10);
+            this.btAdd.Location = new System.Drawing.Point(340, 10);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(54, 23);
             this.btAdd.TabIndex = 3;
@@ -179,11 +180,22 @@
             this.btSetDefault.UseVisualStyleBackColor = true;
             this.btSetDefault.Click += new System.EventHandler(this.btSetDefault_Click);
             // 
+            // btUpdateVersion
+            // 
+            this.btUpdateVersion.Location = new System.Drawing.Point(400, 10);
+            this.btUpdateVersion.Name = "btUpdateVersion";
+            this.btUpdateVersion.Size = new System.Drawing.Size(82, 23);
+            this.btUpdateVersion.TabIndex = 10;
+            this.btUpdateVersion.Text = "包版本更新";
+            this.btUpdateVersion.UseVisualStyleBackColor = true;
+            this.btUpdateVersion.Click += new System.EventHandler(this.btUpdateVersion_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 457);
+            this.Controls.Add(this.btUpdateVersion);
             this.Controls.Add(this.btSetDefault);
             this.Controls.Add(this.btDefaultPath);
             this.Controls.Add(this.btSync);
@@ -223,6 +235,7 @@
         private System.Windows.Forms.Button btSync;
         private System.Windows.Forms.Button btDefaultPath;
         private System.Windows.Forms.Button btSetDefault;
+        private System.Windows.Forms.Button btUpdateVersion;
 
     }
 }

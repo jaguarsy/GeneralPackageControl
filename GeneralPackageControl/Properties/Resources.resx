@@ -138,4 +138,7 @@
   <data name="Updating" xml:space="preserve">
     <value>正在更新...</value>
   </data>
+  <data name="UpdatingVersion" xml:space="preserve">
+    <value>正在更新所有包的版本...</value>
+  </data>
 </root>
