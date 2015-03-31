@@ -123,4 +123,19 @@
   <data name="BasePath" xml:space="preserve">
     <value>https://bitcage.firebaseio.com/</value>
   </data>
+  <data name="Done" xml:space="preserve">
+    <value>更新完毕</value>
+  </data>
+  <data name="Synchronized" xml:space="preserve">
+    <value>同步完毕</value>
+  </data>
+  <data name="Synchronizing" xml:space="preserve">
+    <value>正在从云端同步...</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新选中项</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>正在更新...</value>
+  </data>
 </root>

@@ -33,26 +33,24 @@ namespace GeneralPackageControl
 
         public T GetConfig()
         {
-            using (StreamReader sr = new StreamReader(PATH))
-            {
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                var json = sr.ReadToEnd();
-                var result = js.Deserialize<T>(json);
-                sr.Close();
-                return result;
-            }
+            StreamReader sr = new StreamReader(PATH);
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            var json = sr.ReadToEnd();
+            var result = js.Deserialize<T>(json);
+            sr.Close();
+            return result;
+
         }
 
         public void SetConfig(T config)
         {
-            using (StreamWriter sw = new StreamWriter(PATH))
-            {
-                JavaScriptSerializer js = new JavaScriptSerializer();
+            StreamWriter sw = new StreamWriter(PATH);
+            JavaScriptSerializer js = new JavaScriptSerializer();
 
-                var result = js.Serialize(config);
-                sw.WriteAsync(result);
-                sw.Close();
-            }
+            var result = js.Serialize(config);
+            sw.WriteAsync(result);
+            sw.Close();
         }
     }
 }

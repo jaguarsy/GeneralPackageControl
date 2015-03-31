@@ -41,8 +41,9 @@ D:\Program Files\GeneralPackageControl\GeneralPackageControl\bin\Debug\Newtonsof
 D:\Program Files\GeneralPackageControl\GeneralPackageControl\bin\Debug\System.Net.Http.Extensions.xml
 D:\Program Files\GeneralPackageControl\GeneralPackageControl\bin\Debug\System.Net.Http.Primitives.xml
 D:\Program Files\GeneralPackageControl\GeneralPackageControl\obj\Debug\GeneralPackageControl.csproj.App.config
-D:\Program Files\GeneralPackageControl\GeneralPackageControl\obj\Debug\GeneralPackageControl.csprojResolveAssemblyReference.cache
 D:\Program Files\GeneralPackageControl\GeneralPackageControl\obj\Debug\GeneralPackageControl.Confirm.resources
 D:\Program Files\GeneralPackageControl\GeneralPackageControl\obj\Debug\GeneralPackageControl.MainForm.resources
 D:\Program Files\GeneralPackageControl\GeneralPackageControl\obj\Debug\GeneralPackageControl.Properties.Resources.resources
 D:\Program Files\GeneralPackageControl\GeneralPackageControl\obj\Debug\GeneralPackageControl.csproj.GenerateResource.Cache
+D:\Program Files\GeneralPackageControl\GeneralPackageControl\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Program Files\GeneralPackageControl\GeneralPackageControl\obj\Debug\GeneralPackageControl.EditConfig.resources

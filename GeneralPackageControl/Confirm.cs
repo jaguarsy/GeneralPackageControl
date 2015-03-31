@@ -25,7 +25,7 @@ namespace GeneralPackageControl
         public static PackageItem ShowDialog(List<PackageItem> list)
         {
             Confirm confirm = new Confirm(list);
-            confirm.ShowDialog();
+            if (confirm.ShowDialog() == DialogResult.Cancel) return null;
             return _result;
         }
 

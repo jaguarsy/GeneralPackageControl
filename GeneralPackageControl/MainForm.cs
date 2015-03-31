@@ -1,6 +1,7 @@
 ﻿using GeneralPackageControl.Config;
 using GeneralPackageControl.lib;
 using GeneralPackageControl.Models;
+using GeneralPackageControl.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,11 +26,13 @@ namespace GeneralPackageControl
             InitializeComponent();
 
             _firebase = new Firebase(
-                Properties.Resources.Auth,
-                Properties.Resources.BasePath
+                Resources.Auth,
+                Resources.BasePath
             );
 
             _packageManager = new PackageManager(_firebase);
+            _packageManager.Register(this);
+
             _configManager = ConfigManager<ConfigModel>.SingleInstance;
             _config = _configManager.GetConfig();
 
@@ -44,6 +47,7 @@ namespace GeneralPackageControl
             ListBox.Items.Clear();
             foreach (var item in _config.packages)
             {
+                if (item == null) continue;
                 ListBox.Items.Add(item.PackageName, false);
             }
         }
@@ -51,6 +55,16 @@ namespace GeneralPackageControl
         private void MainForm_Load(object sender, EventArgs e)
         {
             init();
+
+            StatusLabel.Text = Resources.Synchronizing;
+            _packageManager.Pull((p) =>
+            {
+                _config.packages = p;
+                _configManager.SetConfig(_config);
+
+                init();
+                StatusLabel.Text = Resources.Synchronized;
+            });
         }
 
         private void tbUrl_TextChanged(object sender, EventArgs e)
@@ -61,11 +75,60 @@ namespace GeneralPackageControl
         private void btAdd_Click(object sender, EventArgs e)
         {
             var result = _packageManager.ReptilePackage(tbUrl.Text.Trim());
+            if (result == null) return;
 
             _config.packages.Add(result);
             _configManager.SetConfig(_config);
+            _packageManager.Push(_config.packages);
             init();
-            //_packageManager.AnalyzePackage(tbUrl.Text.Trim());
+        }
+
+        private void btChooseAll_Click(object sender, EventArgs e)
+        {
+            setSelected();
+        }
+
+        private void setSelected()
+        {
+            var count = ListBox.Items.Count;
+            var selected = ListBox.CheckedItems.Count < count;
+            for (var i = 0; i < count; i++)
+            {
+                ListBox.SetItemChecked(i, selected);
+            }
+        }
+
+        private void btUpdate_Click(object sender, EventArgs e)
+        {
+            var list = ListBox.CheckedItems;
+            var checkedList = _config.packages.Where(p => list.Contains(p.PackageName)).ToList();
+
+            btUpdate.Enabled = false;
+            StatusLabel.Text = Resources.Updating;
+            _packageManager.UpdatePackage(checkedList);
+        }
+
+        private void ToolStripMenuItemEdit_Click(object sender, EventArgs e)
+        {
+            var target = ListBox.SelectedItem;
+            var package = _config.packages.SingleOrDefault(p => p.PackageName.Equals(target));
+
+            if (EditConfig.ShowDialog(package) == null) return;
+
+            _configManager.SetConfig(_config);
+            _packageManager.Push(_config.packages);
+
+            init();
+        }
+
+        private void ToolStripMenuItemUpdate_Click(object sender, EventArgs e)
+        {
+            var item = ListBox.SelectedItem;
+            var target = _config.packages.SingleOrDefault(p => p.PackageName.Equals(item));
+
+            btUpdate.Enabled = false;
+            StatusLabel.Text = Resources.Updating;
+            _packageManager.UpdatePackage(target);
         }
     }
 }

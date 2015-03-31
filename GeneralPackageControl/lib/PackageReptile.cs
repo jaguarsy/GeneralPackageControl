@@ -1,6 +1,7 @@
 ﻿using GeneralPackageControl.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -58,7 +59,7 @@ namespace GeneralPackageControl.lib
         {
             var match = title_Regex.Match(html);
 
-            return match.Groups[1].Value;
+            return Regex.Replace(match.Groups[1].Value, "\\s*|\t|\r|\n", "");
         }
 
         private string getTitle(string html)
@@ -95,16 +96,17 @@ namespace GeneralPackageControl.lib
                 var href = item.Groups[1].Value;
                 if (isUnusedHref(href)) continue;
 
+                var aTitle = getTitle(html);
                 var text = item.Groups[2].Value;
-                var title = getHtmlTitle(html);
                 if (!isInKeyword(text) &&
-                    !isInKeyword(title) &&
+                    !isInKeyword(aTitle) &&
                     !isInKeyword(href)) continue;
+                var title = getHtmlTitle(html);
 
                 var package = new PackageItem()
                 {
                     PackageName = string.IsNullOrEmpty(title) ? text : title,
-                    DownloadUrl = href.StartsWith(@"/") ? url + href.Substring(1, href.Length - 1) : href,
+                    DownloadUrl = completeUrl(href, url),
                     LastUpdateTime = DateTime.Now,
                     Website = url
                 };
@@ -112,6 +114,28 @@ namespace GeneralPackageControl.lib
             }
 
             return packageList;
+        }
+
+        private string completeUrl(string href, string url)
+        {
+            if (href.StartsWith("./")) href = href.Substring(1, href.Length - 1);
+            if (href.StartsWith("/") || !href.EndsWith("/") && !href.Contains("/")) return combine(url, href);
+            else return href;
+        }
+
+        private string combine(string baseUrl, string ex)
+        {
+            if (ex.StartsWith("/")) ex = ex.Substring(1, ex.Length - 1);
+            return baseUrl + ex;
+        }
+
+        public HttpResult DownloadPackage(PackageItem package)
+        {
+            return _httpHelper.GetHtml(new HttpItem()
+            {
+                URL = package.DownloadUrl,
+                ResultType = ResultType.Byte
+            });
         }
     }
 }

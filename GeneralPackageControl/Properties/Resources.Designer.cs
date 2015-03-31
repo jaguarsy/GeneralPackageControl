@@ -77,5 +77,50 @@ namespace GeneralPackageControl.Properties {
                 return ResourceManager.GetString("BasePath", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 更新完毕 的本地化字符串。
+        /// </summary>
+        internal static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 同步完毕 的本地化字符串。
+        /// </summary>
+        internal static string Synchronized {
+            get {
+                return ResourceManager.GetString("Synchronized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 正在从云端同步... 的本地化字符串。
+        /// </summary>
+        internal static string Synchronizing {
+            get {
+                return ResourceManager.GetString("Synchronizing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 更新选中项 的本地化字符串。
+        /// </summary>
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 正在更新... 的本地化字符串。
+        /// </summary>
+        internal static string Updating {
+            get {
+                return ResourceManager.GetString("Updating", resourceCulture);
+            }
+        }
     }
 }

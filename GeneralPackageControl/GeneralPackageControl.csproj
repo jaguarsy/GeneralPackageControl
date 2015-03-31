@@ -38,6 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FireSharp.2.0.0\lib\net45\FireSharp.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
@@ -83,15 +86,26 @@
     <Compile Include="Confirm.Designer.cs">
       <DependentUpon>Confirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditConfig.Designer.cs">
+      <DependentUpon>EditConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IUpdate.cs" />
     <Compile Include="lib\Firebase.cs" />
     <Compile Include="lib\HttpHelper.cs" />
     <Compile Include="lib\PackageManager.cs" />
     <Compile Include="lib\PackageReptile.cs" />
+    <Compile Include="lib\Zip.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.func.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\AItem.cs" />
     <Compile Include="Models\PackageItem.cs" />
@@ -99,6 +113,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditConfig.resx">
+      <DependentUpon>EditConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

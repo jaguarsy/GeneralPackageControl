@@ -1,5 +1,6 @@
 ﻿using FireSharp;
 using FireSharp.Config;
+using FireSharp.EventStreaming;
 using FireSharp.Response;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace GeneralPackageControl.lib
         /// </summary>
         /// <param name="path">Relative Path</param>
         /// <param name="callback">Callback Function</param>
-        public async void get(string path, Action<FirebaseResponse> callback)
+        public async void Get(string path, Action<FirebaseResponse> callback)
         {
             var res = await _client.GetAsync(path);
             callback(res);
@@ -52,7 +53,7 @@ namespace GeneralPackageControl.lib
         /// <param name="path">Relative Path</param>
         /// <param name="data">Push Data</param>
         /// <param name="callback">Callback Function</param>
-        public async void push(string path, object data, Action<FirebaseResponse> callback)
+        public async void Push(string path, object data, Action<FirebaseResponse> callback)
         {
             var res = await _client.PushAsync(path, data);
             callback(res);
@@ -64,7 +65,7 @@ namespace GeneralPackageControl.lib
         /// <param name="path">Relative Path</param>
         /// <param name="data">Set Data</param>
         /// <param name="callback">Callback Function</param>
-        public async void set(string path, object data, Action<FirebaseResponse> callback)
+        public async void Set(string path, object data, Action<FirebaseResponse> callback)
         {
             var res = await _client.SetAsync(path, data);
             callback(res);
@@ -76,7 +77,7 @@ namespace GeneralPackageControl.lib
         /// <param name="path">Relative Path</param>
         /// <param name="data">Update Data</param>
         /// <param name="callback">Callback Function</param>
-        public async void update(string path, object data, Action<FirebaseResponse> callback)
+        public async void Update(string path, object data, Action<FirebaseResponse> callback)
         {
             var res = await _client.UpdateAsync(path, data);
             callback(res);
@@ -87,10 +88,30 @@ namespace GeneralPackageControl.lib
         /// </summary>
         /// <param name="path">Relative Path</param>
         /// <param name="callback">Callback Function</param>
-        public async void delete(string path, Action<FirebaseResponse> callback)
+        public async void Delete(string path, Action<FirebaseResponse> callback)
         {
             var res = await _client.DeleteAsync(path);
             callback(res);
+        }
+
+        public async void Listen(string path,
+            Action<object, ValueAddedEventArgs> addCallback,
+            Action<object, ValueChangedEventArgs> changeCallback,
+            Action<object, ValueRemovedEventArgs> removeCallback)
+        {
+            await _client.OnAsync(path,
+                added: (s, args) =>
+                {
+                    addCallback(s, args);
+                },
+                changed: (s, args) =>
+                {
+                    changeCallback(s, args);
+                },
+                removed: (s, args) =>
+                {
+                    removeCallback(s, args);
+                });
         }
     }
 }
